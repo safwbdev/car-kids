@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import Grid from '@material-ui/core/Grid';
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 export default class Item extends Component {
     constructor(props) {
@@ -36,14 +38,18 @@ export default class Item extends Component {
     render() {
         console.log(this.state.images)
         return (
-            <div>
-                <h1>ITEM PAGE</h1>
-                <p>{this.state.name}</p>
-                <p>{this.state.type}</p>
-                <p>{this.state.availability}</p>
-                <p>{this.state.rating}</p>
-                <p>{this.state.images}</p>
-            </div>
+            <Grid container spacing={3}> 
+                <Grid item xs={8}>
+                <img src={this.state.images} className="width-full" />
+
+                </Grid>
+                <Grid item xs={4}>
+                <h1>{this.state.name}</h1>
+                <p>type: {this.state.type}</p>
+                <p>date availbale: {this.state.availability}</p>
+                <p>rating: {this.state.rating}</p>
+            </Grid>
+            </Grid>
         )
     }
 }
