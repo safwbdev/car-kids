@@ -1,11 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import Navbar from './components/Navbar'
 import Item from './components/Item'
 import Home from './components/Home'
 import Edit from './components/Edit'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Container } from '@material-ui/core';
 
 function App() {
