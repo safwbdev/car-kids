@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import axios from 'axios';
 
 export default class Home extends Component {
@@ -27,7 +28,8 @@ export default class Home extends Component {
                     <p>{item.item_rating}</p>
                     <p>{item.item_type}</p>
                     <p>{item.item_images[0]}</p>
-                    
+                    <p>{item._id}</p>
+                    <Link to={`/item/${item._id}`}>View</Link>
                     </div>
             });
         
