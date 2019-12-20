@@ -3,6 +3,7 @@ import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import DatePicker from "react-datepicker"; 
 import "react-datepicker/dist/react-datepicker.css";
+import { Link } from '@material-ui/core';
 
 export default class Edit extends Component {
 
@@ -121,11 +122,6 @@ export default class Edit extends Component {
                         </Grid>
                         <Grid item xs={12}>
                             <label>Available Date: </label>
-                            {/* <input  type="text"
-                                    className="form-control"
-                                    value={this.state.availability}
-                                    onChange={this.onChangeDate}
-                                    /> */}
                                 <DatePicker
                                     selected={this.state.startDate}
                                     onChange={this.onChangeDate}
