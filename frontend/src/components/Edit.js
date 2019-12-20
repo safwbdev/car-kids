@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import DatePicker from "react-datepicker"; 
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 export default class Edit extends Component {
 
@@ -92,9 +94,9 @@ export default class Edit extends Component {
         console.log(this.state.images);
       };
     
-      handleRemoveImageURL = idx => () => {
+      handleRemoveImageURL = id => () => {
         this.setState({
-          images: this.state.images.filter((s, sidx) => idx !== sidx)
+          images: this.state.images.filter((s, sid) => id !== sid)
         });
       };
 
@@ -121,12 +123,12 @@ export default class Edit extends Component {
                 <form onSubmit={this.onSubmit}>
                     <Grid container spacing={3}> 
                         <Grid item xs={12}>
-                            <label>Item Name: </label>
-                            <input  type="text"
-                                    className="form-control"
-                                    value={this.state.name}
-                                    onChange={this.onChangeName}
-                                    />
+                            <TextField 
+                                required 
+                                label="Name" 
+                                value={this.state.name} 
+                                onChange={this.onChangeName} 
+                                variant="outlined" />
 
                         </Grid>
                         <Grid item xs={12}>
@@ -142,27 +144,26 @@ export default class Edit extends Component {
                         <Grid item xs={12}>
                             <label>Photos: </label>
                             {this.state.images.map((image, id) => (
-                            <div className="" key={id}>
-                                <input
-                                type="text"
-                                placeholder={`Image url ${id + 1}`}
-                                value={image.imgurl}
-                                onChange={this.handleImageURLChange(id)}
-                                />
-                                <button
-                                type="button"
-                                onClick={this.handleRemoveImageURL(id)}
-                                >
-                                -
-                                </button>
-                            </div>
+                                <Grid item xs={12} key={id}>
+                                    <TextField 
+                                        required 
+                                        label={`Image ${(id + 1)}`}
+                                        value={image.imgurl}
+                                        placeholder="Add image URL"
+                                        onChange={this.handleImageURLChange(id)}
+                                        variant="outlined" />
+                                    <Button 
+                                        variant="contained" 
+                                        onClick={this.handleRemoveImageURL(id)}>
+                                        -
+                                    </Button>
+                            </Grid>
                             ))}
-                            <button
-                            type="button"
-                            onClick={this.handleAddImageURL}
-                            >
-                            Add Image URL
-                            </button>
+                            <Button 
+                                variant="contained" 
+                                onClick={this.handleAddImageURL}>
+                                Add Image URL
+                            </Button>
                         </Grid>
                         <Grid item xs={12}>
                             <label>Available Date: </label>
@@ -184,8 +185,10 @@ export default class Edit extends Component {
                             </select>
                         </Grid>
                         <Grid item xs={12}>
-                            <input type="submit" value="Update" className="btn btn-primary" />
-                            <Link to={`/item/${this.props.match.params.id}`}>BACK</Link>
+                            <Link to={`/item/${this.props.match.params.id}`}>
+                            <Button variant="contained">Back</Button>
+                            </Link>
+                            <Button variant="contained"  type="submit">Update</Button>
                         </Grid>
                     </Grid>
                 </form>

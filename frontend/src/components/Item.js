@@ -74,9 +74,23 @@ export default class Item extends Component {
                     <p>Type: {this.state.type}</p>
                     <p>Date of availbility: {this.state.availability}</p>
                     <p>Rating: {this.state.rating}</p>
-                    <Link to="/">BACK</Link>
-                    <Link to={`/edit/${this.props.match.params.id}`}>Edit</Link>
                 </Grid>
+                
+                <Grid item 
+                    lg={6} 
+                    md={6} 
+                    sm={6} 
+                    xs={6} >
+                        <Link to="/">BACK</Link>
+                        </Grid>
+                        <Grid item 
+                        lg={6} 
+                        md={6} 
+                        sm={6} 
+                        xs={6} >
+                        
+                    <Link to={`/edit/${this.props.match.params.id}`}>Edit</Link>
+                    </Grid>
             </Grid>
         )
     }
