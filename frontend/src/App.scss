@@ -10,3 +10,56 @@
 
   }
 }
+.item-box{
+text-decoration: none;
+  .card-item{
+    // border: 1px solid red;
+    padding: 0;
+    .card-content{
+      padding: 0;
+      p{
+        margin: 5px 10px;
+        font-weight: bold;
+        font-size: 1.1em;
+      }
+    }
+  }
+}
+.slides{
+  img{
+    // border: 1px solid red;
+    height: 500px;
+    @media only screen and (max-width: 480px){
+      height: 300px;      
+    }
+  }
+  .slick-prev, .slick-next {
+    position: absolute;
+    top: 50%;
+  }
+  .slick-prev {
+    z-index: 1;
+    left: 5%;
+    &::before{
+      color: #000000;
+      font-size: 30px;
+    }
+  }
+  .slick-next {
+    // border: 1px solid red;
+    right: 5%;
+    &::before{
+      color: #000000;
+      font-size: 30px;
+    }
+  }
+}
+.edit-btn{
+
+  margin: 0;
+  top: 'auto';
+  right: 20;
+  bottom: 20;
+  left: 'auto';
+  position: 'fixed';
+}

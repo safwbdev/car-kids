@@ -25,7 +25,14 @@ export default class Home extends Component {
     render() {
         const itemList = this.state.items.map(function(item, i) {
 
-            return <Grid key={i} xs={3} item={true}>
+            return <Grid 
+                        key={i} 
+                        item={true}
+                        lg={3} 
+                        md={3} 
+                        sm={3} 
+                        xs={6} 
+                        >
                         <ItemBox 
                             key={i} 
                             id={item._id}
@@ -42,9 +49,10 @@ export default class Home extends Component {
                 <Grid item xs={12}>
                     <h1>Home Page</h1>
                 </Grid>
-                {itemList}
-
-        </Grid>
+                <Grid container spacing={2}>
+                    {itemList}
+                </Grid>
+            </Grid>
         )
     }
 }

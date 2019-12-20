@@ -17,15 +17,13 @@ export default class ItemBox extends Component {
     render() {
         console.log(this.props.data)
         return (
-            <Link to={`/item/${this.props.id}`}>
-            <Card >
-      <CardHeader
-        title={this.props.name}
-      />
-      <CardContent>
-        <img src={this.props.image} className="width-full" alt="" />
-      </CardContent>
-      <CardActions disableSpacing>
+            <Link to={`/item/${this.props.id}`} className="item-box">
+              <Card className="card-item">
+                <CardContent className="card-content">
+                  <img src={this.props.image} className="width-full" alt="" />
+                  <p>{this.props.name}</p>
+                </CardContent>
+                <CardActions disableSpacing>
         
         <IconButton aria-label="share">
           <ShareIcon />

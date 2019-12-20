@@ -3,7 +3,7 @@ import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import DatePicker from "react-datepicker"; 
 import "react-datepicker/dist/react-datepicker.css";
-import { Link } from '@material-ui/core';
+import { Link } from "react-router-dom";
 
 export default class Edit extends Component {
 
@@ -185,6 +185,7 @@ export default class Edit extends Component {
                         </Grid>
                         <Grid item xs={12}>
                             <input type="submit" value="Update" className="btn btn-primary" />
+                            <Link to={`/item/${this.props.match.params.id}`}>BACK</Link>
                         </Grid>
                     </Grid>
                 </form>

@@ -43,27 +43,38 @@ export default class Item extends Component {
             infinite: true,
             speed: 500,
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            arrows: true,
+            className: 'slides'
           };
 
         const imageSlides = this.state.images.map(function(img, id){
             return <div key={id}>
-                        <img src={img["imgurl"]} alt="" />
+                        <img src={img["imgurl"]} alt="" className="width-full" />
                     </div>
         }
         );
         return (
             <Grid container spacing={3}> 
-                <Grid item xs={8}>
+                <Grid item 
+                    lg={8} 
+                    md={8} 
+                    sm={8} 
+                    xs={12} >
                     <Slider {...settings}>
                         {imageSlides}
                     </Slider>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item 
+                    lg={4} 
+                    md={4} 
+                    sm={4} 
+                    xs={12} >
                     <h1>{this.state.name}</h1>
-                    <p>type: {this.state.type}</p>
-                    <p>date availbale: {this.state.availability}</p>
-                    <p>rating: {this.state.rating}</p>
+                    <p>Type: {this.state.type}</p>
+                    <p>Date of availbility: {this.state.availability}</p>
+                    <p>Rating: {this.state.rating}</p>
+                    <Link to="/">BACK</Link>
                     <Link to={`/edit/${this.props.match.params.id}`}>Edit</Link>
                 </Grid>
             </Grid>
