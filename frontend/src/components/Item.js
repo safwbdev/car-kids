@@ -7,8 +7,8 @@ export default class Item extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: 'lol',
-            rating: 'pop',
+            name: '',
+            rating: '',
             availability: '',
             type: '',
             images: []
@@ -40,15 +40,15 @@ export default class Item extends Component {
         return (
             <Grid container spacing={3}> 
                 <Grid item xs={8}>
-                <img src={this.state.images} className="width-full" />
-
+                    <img src={this.state.images} className="width-full" />
                 </Grid>
                 <Grid item xs={4}>
-                <h1>{this.state.name}</h1>
-                <p>type: {this.state.type}</p>
-                <p>date availbale: {this.state.availability}</p>
-                <p>rating: {this.state.rating}</p>
-            </Grid>
+                    <h1>{this.state.name}</h1>
+                    <p>type: {this.state.type}</p>
+                    <p>date availbale: {this.state.availability}</p>
+                    <p>rating: {this.state.rating}</p>
+                    <Link to={`/edit/${this.props.match.params.id}`}>Edit</Link>
+                </Grid>
             </Grid>
         )
     }
