@@ -25,7 +25,8 @@ export default class Edit extends Component {
             rating: '',
             availability: '',
             type: '',
-            images: []
+            // images: [],
+            images: [{ imgurl: "" }]
         };
     }
 
@@ -72,6 +73,32 @@ export default class Edit extends Component {
             rating: e.target.value
         });
     }
+
+
+    handleImageURLChange = id => evt => {
+        const newImageArray = this.state.images.map((image, sid) => {
+          if (id !== sid) return image;
+          return { ...image, imgurl: evt.target.value };
+        });
+    
+        this.setState({ images: newImageArray });
+      };
+    
+      handleAddImageURL = () => {
+        this.setState({
+          images: this.state.images.concat([{ imgurl: "" }])
+
+        });
+        console.log(this.state.images);
+      };
+    
+      handleRemoveImageURL = idx => () => {
+        this.setState({
+          images: this.state.images.filter((s, sidx) => idx !== sidx)
+        });
+      };
+
+
     onSubmit(e) {
         e.preventDefault();
         const obj = {
@@ -114,11 +141,28 @@ export default class Edit extends Component {
                         </Grid>
                         <Grid item xs={12}>
                             <label>Photos: </label>
-                            <input  type="text"
-                                    className="form-control"
-                                    value={this.state.images[0]}
-                                    onChange={this.onChangeTodoImage}
-                                    />
+                            {this.state.images.map((image, id) => (
+                            <div className="" key={id}>
+                                <input
+                                type="text"
+                                placeholder={`Image url ${id + 1}`}
+                                value={image.imgurl}
+                                onChange={this.handleImageURLChange(id)}
+                                />
+                                <button
+                                type="button"
+                                onClick={this.handleRemoveImageURL(id)}
+                                >
+                                -
+                                </button>
+                            </div>
+                            ))}
+                            <button
+                            type="button"
+                            onClick={this.handleAddImageURL}
+                            >
+                            Add Image URL
+                            </button>
                         </Grid>
                         <Grid item xs={12}>
                             <label>Available Date: </label>

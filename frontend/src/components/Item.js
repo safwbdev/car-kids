@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
 export default class Item extends Component {
@@ -33,6 +33,7 @@ export default class Item extends Component {
             .catch(function (error) {
                 console.log(error);
             })
+            console.log(this.state.rating)
     }
 
 
@@ -45,11 +46,12 @@ export default class Item extends Component {
             slidesToScroll: 1
           };
 
-        const imageSlides = this.state.images.map((img) => (
-            <div key={img.id}>
-                <img src={img} />
-            </div>
-        ));
+        const imageSlides = this.state.images.map(function(img, id){
+            return <div key={id}>
+                        <img src={img["imgurl"]} alt="" />
+                    </div>
+        }
+        );
         return (
             <Grid container spacing={3}> 
                 <Grid item xs={8}>
