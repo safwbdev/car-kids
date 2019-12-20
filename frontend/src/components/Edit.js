@@ -6,6 +6,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import ClearIcon from '@material-ui/icons/Clear';
+import AddIcon from '@material-ui/icons/Add';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import Fab from '@material-ui/core/Fab';
 
 export default class Edit extends Component {
 
@@ -122,7 +126,11 @@ export default class Edit extends Component {
                 <h1>Edit Page</h1>
                 <form onSubmit={this.onSubmit}>
                     <Grid container spacing={3}> 
-                        <Grid item xs={12}>
+                        <Grid item 
+                            lg={12} 
+                            md={12} 
+                            sm={12} 
+                            xs={12}>
                             <TextField 
                                 required 
                                 label="Name" 
@@ -131,7 +139,11 @@ export default class Edit extends Component {
                                 variant="outlined" />
 
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item 
+                            lg={12} 
+                            md={12} 
+                            sm={12} 
+                            xs={12}>
                         <label>Item Type: </label>
                         <select value={this.state.type} onChange={this.onChangeType}>
                             <option value="Electric">Electric</option>
@@ -141,28 +153,40 @@ export default class Edit extends Component {
                         </select>
                         
                         </Grid>
-                        <Grid item xs={12}>
-                            <label>Photos: </label>
+                        <Grid item 
+                            lg={12} 
+                            md={12} 
+                            sm={12} 
+                            xs={12} >
+                            <h6>Upload Images</h6>
                             {this.state.images.map((image, id) => (
-                                <Grid item xs={12} key={id}>
+                                <Grid item 
+                                key={id}
+                                lg={12} 
+                                md={12} 
+                                sm={12} 
+                                xs={12}
+                                >
                                     <TextField 
                                         required 
                                         label={`Image ${(id + 1)}`}
                                         value={image.imgurl}
                                         placeholder="Add image URL"
                                         onChange={this.handleImageURLChange(id)}
-                                        variant="outlined" />
-                                    <Button 
+                                        variant="outlined" />{'  '}
+                                    <Fab 
                                         variant="contained" 
+                                        size="small" 
+                                        color="secondary"
                                         onClick={this.handleRemoveImageURL(id)}>
-                                        -
-                                    </Button>
+                                        <ClearIcon />
+                                    </Fab>
                             </Grid>
                             ))}
                             <Button 
                                 variant="contained" 
                                 onClick={this.handleAddImageURL}>
-                                Add Image URL
+                                <AddIcon />Add Image URL
                             </Button>
                         </Grid>
                         <Grid item xs={12}>
@@ -186,7 +210,9 @@ export default class Edit extends Component {
                         </Grid>
                         <Grid item xs={12}>
                             <Link to={`/item/${this.props.match.params.id}`}>
-                            <Button variant="contained">Back</Button>
+                                <Button variant="contained">
+                                    <ArrowBackIosIcon /> Back
+                                </Button>
                             </Link>
                             <Button variant="contained"  type="submit">Update</Button>
                         </Grid>

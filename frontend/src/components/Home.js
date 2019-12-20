@@ -30,7 +30,7 @@ export default class Home extends Component {
                         item={true}
                         lg={3} 
                         md={3} 
-                        sm={3} 
+                        sm={4} 
                         xs={6} 
                         >
                         <ItemBox 

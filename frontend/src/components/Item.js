@@ -3,6 +3,11 @@ import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import Button from '@material-ui/core/Button';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import EditIcon from '@material-ui/icons/Edit';
+import StarsIcon from '@material-ui/icons/Stars';
+import StarIcon from '@material-ui/icons/Star';
 
 export default class Item extends Component {
     constructor(props) {
@@ -52,8 +57,14 @@ export default class Item extends Component {
             return <div key={id}>
                         <img src={img["imgurl"]} alt="" className="width-full" />
                     </div>
+        });
+        let stars = [];
+        for (let i=0;i<this.state.rating ;i++){
+            stars.push(<StarIcon />)
         }
-        );
+        const getRating = this.state.rating; 
+
+
         return (
             <Grid container spacing={3}> 
                 <Grid item 
@@ -71,9 +82,9 @@ export default class Item extends Component {
                     sm={4} 
                     xs={12} >
                     <h1>{this.state.name}</h1>
-                    <p>Type: {this.state.type}</p>
-                    <p>Date of availbility: {this.state.availability}</p>
-                    <p>Rating: {this.state.rating}</p>
+                    <p>Rating: {stars}</p>
+                    <p>Type: <strong>{this.state.type}</strong></p>
+                    <p>Date of availbility: <strong>{this.state.availability}</strong></p>
                 </Grid>
                 
                 <Grid item 
@@ -81,15 +92,22 @@ export default class Item extends Component {
                     md={6} 
                     sm={6} 
                     xs={6} >
-                        <Link to="/">BACK</Link>
-                        </Grid>
-                        <Grid item 
+                        <Link to="/">
+                            <Button variant="contained">
+                                <ArrowBackIosIcon /> Back
+                            </Button>
+                        </Link>
+                    </Grid>
+                    <Grid item 
                         lg={6} 
                         md={6} 
                         sm={6} 
                         xs={6} >
-                        
-                    <Link to={`/edit/${this.props.match.params.id}`}>Edit</Link>
+                        <Link to={`/edit/${this.props.match.params.id}`}>
+                            <Button variant="contained">
+                                <EditIcon /> Edit
+                            </Button>
+                        </Link>
                     </Grid>
             </Grid>
         )
