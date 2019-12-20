@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
+import DatePicker from "react-datepicker"; 
+import "react-datepicker/dist/react-datepicker.css";
 
 export default class Edit extends Component {
 
@@ -17,6 +19,7 @@ export default class Edit extends Component {
 
 
         this.state = {
+            startDate: new Date(),
             name: '',
             rating: '',
             availability: '',
@@ -58,9 +61,9 @@ export default class Edit extends Component {
             images: e.target.value
         });
     }
-    onChangeDate(e) {
+    onChangeDate(date) {
         this.setState({
-            availability: e.target.value
+            availability: date
         });
     }
     onChangeRating(e) {
@@ -118,11 +121,15 @@ export default class Edit extends Component {
                         </Grid>
                         <Grid item xs={12}>
                             <label>Available Date: </label>
-                            <input  type="text"
+                            {/* <input  type="text"
                                     className="form-control"
                                     value={this.state.availability}
                                     onChange={this.onChangeDate}
-                                    />
+                                    /> */}
+                                <DatePicker
+                                    selected={this.state.startDate}
+                                    onChange={this.onChangeDate}
+                                />
                         </Grid>
                         <Grid item xs={12}>
                             <label>Rating: </label>
