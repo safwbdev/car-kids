@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import Slider from "react-slick";
 
 export default class Item extends Component {
     constructor(props) {
@@ -36,11 +37,25 @@ export default class Item extends Component {
 
 
     render() {
-        console.log(this.state.images)
+        var settings = {
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1
+          };
+
+        const imageSlides = this.state.images.map((img) => (
+            <div key={img.id}>
+                <img src={img} />
+            </div>
+        ));
         return (
             <Grid container spacing={3}> 
                 <Grid item xs={8}>
-                    <img src={this.state.images} className="width-full" />
+                    <Slider {...settings}>
+                        {imageSlides}
+                    </Slider>
                 </Grid>
                 <Grid item xs={4}>
                     <h1>{this.state.name}</h1>
