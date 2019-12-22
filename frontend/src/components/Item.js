@@ -82,9 +82,9 @@ export default class Item extends Component {
                     <p>Rating: {stars}</p>
                     <p>Type: <strong>{this.state.type}</strong></p>
                     <p>Date of availbility: <strong>{this.state.availability}</strong></p>
-                </Grid>
-                
+                    <Grid container spacing={1} className="action-buttons"> 
                 <Grid item 
+                    align="left"
                     lg={6} 
                     md={6} 
                     sm={6} 
@@ -96,6 +96,7 @@ export default class Item extends Component {
                         </Link>
                     </Grid>
                     <Grid item 
+                        align="right"
                         lg={6} 
                         md={6} 
                         sm={6} 
@@ -106,6 +107,9 @@ export default class Item extends Component {
                             </Button>
                         </Link>
                     </Grid>
+                    </Grid>
+                </Grid>
+                
             </Grid>
         )
     }

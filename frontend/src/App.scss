@@ -65,3 +65,28 @@ text-decoration: none;
   left: 'auto';
   position: 'fixed';
 }
+
+.action-buttons{
+  a{
+    text-decoration: none;
+    button{
+      width: 100%;
+    }
+  }
+  button{
+    width: 100%;
+  }
+}
+
+.edit-form{
+  .img-upload{
+    .MuiFormControl-root{
+      width: 80%;
+    }
+  }
+  .MuiFormControl-root{
+    width: 100%;
+    
+    
+  }
+}

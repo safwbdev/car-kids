@@ -130,13 +130,13 @@ export default class Edit extends Component {
 
     render() {
         return (
-            <div>
+            <div className="edit-form">
                 <h1>Edit Page</h1>
                 <form onSubmit={this.onSubmit}>
                     <Grid container spacing={3}> 
                         <Grid item 
-                            lg={12} 
-                            md={12} 
+                            lg={6} 
+                            md={6} 
                             sm={12} 
                             xs={12}>
                             <TextField 
@@ -147,8 +147,8 @@ export default class Edit extends Component {
                                 variant="outlined" />
                         </Grid>
                         <Grid item 
-                            lg={12} 
-                            md={12} 
+                            lg={6} 
+                            md={6} 
                             sm={12} 
                             xs={12}>
                             <FormControl variant="outlined">
@@ -169,9 +169,53 @@ export default class Edit extends Component {
                                     <option value="Remote Controlled">Remote Controlled</option>
                                 </Select>
                             </FormControl>
+                        </Grid>
                         
+                        <Grid item lg={6} 
+                            md={6} 
+                            sm={12} 
+                            xs={12}>
+                            {/* <label>Available Date: </label>
+                                <DatePicker
+                                    selected={this.state.startDate}
+                                    onChange={this.onChangeDate}
+                                /> */}
+                            <TextField
+                                id="date"
+                                label="Birthday"
+                                type="date"
+                                defaultValue="2017-05-24"
+                                InputLabelProps={{
+                                    shrink: true,
+                                    }}
+                                />
+                        </Grid>
+                        <Grid item lg={6} 
+                            md={6} 
+                            sm={12} 
+                            xs={12}>
+                            <FormControl variant="outlined">
+                                <InputLabel htmlFor="rating-select" >Rating</InputLabel>
+                                <Select
+                                native
+                                value={this.state.rating}
+                                onChange={this.handleChange('rating')}
+                                inputProps={{
+                                    name: 'rating',
+                                    id: 'rating-select',
+                                }}
+                                >
+                                    <option value="" />
+                                    <option value={1}>1</option>
+                                    <option value={2}>2</option>
+                                    <option value={3}>3</option>
+                                    <option value={4}>4</option>
+                                    <option value={5}>5</option>
+                                </Select>
+                            </FormControl>
                         </Grid>
                         <Grid item 
+                            className="img-upload"
                             lg={12} 
                             md={12} 
                             sm={12} 
@@ -208,35 +252,8 @@ export default class Edit extends Component {
                                 <AddIcon />Add Image URL
                             </Button>
                         </Grid>
-                        <Grid item xs={12}>
-                            <label>Available Date: </label>
-                                <DatePicker
-                                    selected={this.state.startDate}
-                                    onChange={this.onChangeDate}
-                                />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <FormControl variant="outlined">
-                                <InputLabel htmlFor="rating-select" >Rating</InputLabel>
-                                <Select
-                                native
-                                value={this.state.rating}
-                                onChange={this.handleChange('rating')}
-                                inputProps={{
-                                    name: 'rating',
-                                    id: 'rating-select',
-                                }}
-                                >
-                                    <option value="" />
-                                    <option value={1}>1</option>
-                                    <option value={2}>2</option>
-                                    <option value={3}>3</option>
-                                    <option value={4}>4</option>
-                                    <option value={5}>5</option>
-                                </Select>
-                            </FormControl>
-                        </Grid>
                     </Grid>
+                    <br />
                     <Grid container spacing={1} className="action-buttons">
                         <Grid item xs={6}>
                             <Link to={`/item/${this.props.match.params.id}`}>
