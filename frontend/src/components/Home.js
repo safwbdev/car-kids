@@ -7,7 +7,12 @@ export default class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {items: []};
+        this.state = {
+            items: [],
+            currentPage: 1,
+            itemsPerPage: 2
+        };
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -20,10 +25,42 @@ export default class Home extends Component {
             })
     }
 
+    handleClick(event) {
+        this.setState({
+          currentPage: Number(event.target.id)
+        });
+        console.log(Number(event.target.id))
+    }
+
     
     
     render() {
-        const itemList = this.state.items.map(function(item, i) {
+
+        
+
+        const { currentPage, itemsPerPage } = this.state;
+        const indexOfLastItem = currentPage * itemsPerPage;
+        const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+        const currentItems = this.state.items.slice(indexOfFirstItem, indexOfLastItem);
+
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(this.state.items.length / itemsPerPage); i++) {
+            pageNumbers.push(i);
+        }
+        const renderPageNumbers = pageNumbers.map(number => {
+            return (
+                <li
+                    key={number}
+                    id={number}
+                    onClick={this.handleClick}
+                >
+                    {number}
+                </li>
+            );
+        });
+
+
+        const itemList = currentItems.map(function(item, i) {
 
             return <Grid 
                         key={i} 
@@ -51,6 +88,11 @@ export default class Home extends Component {
                 </Grid>
                 <Grid container spacing={2}>
                     {itemList}
+                </Grid>
+                <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    {renderPageNumbers}
+                </Grid>
                 </Grid>
             </Grid>
         )

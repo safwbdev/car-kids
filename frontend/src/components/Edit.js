@@ -10,6 +10,9 @@ import ClearIcon from '@material-ui/icons/Clear';
 import AddIcon from '@material-ui/icons/Add';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Fab from '@material-ui/core/Fab';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 export default class Edit extends Component {
 
@@ -23,6 +26,7 @@ export default class Edit extends Component {
         this.onChangeDate = this.onChangeDate.bind(this);
         this.onChangeRating = this.onChangeRating.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
 
 
         this.state = {
@@ -31,8 +35,7 @@ export default class Edit extends Component {
             rating: '',
             availability: '',
             type: '',
-            // images: [],
-            images: [{ imgurl: "" }]
+            images: [{ imgurl: "" }],
         };
     }
 
@@ -90,20 +93,25 @@ export default class Edit extends Component {
         this.setState({ images: newImageArray });
       };
     
-      handleAddImageURL = () => {
+    handleAddImageURL = () => {
         this.setState({
           images: this.state.images.concat([{ imgurl: "" }])
 
         });
         console.log(this.state.images);
-      };
+    };
     
-      handleRemoveImageURL = id => () => {
+    handleRemoveImageURL = id => () => {
         this.setState({
           images: this.state.images.filter((s, sid) => id !== sid)
         });
-      };
+    };
 
+    handleChange = name => event => {
+        this.setState({
+          [name]: event.target.value
+        });
+    };
 
     onSubmit(e) {
         e.preventDefault();
@@ -137,20 +145,30 @@ export default class Edit extends Component {
                                 value={this.state.name} 
                                 onChange={this.onChangeName} 
                                 variant="outlined" />
-
                         </Grid>
                         <Grid item 
                             lg={12} 
                             md={12} 
                             sm={12} 
                             xs={12}>
-                        <label>Item Type: </label>
-                        <select value={this.state.type} onChange={this.onChangeType}>
-                            <option value="Electric">Electric</option>
-                            <option value="Plastic">Plastic</option>
-                            <option value="Wooden">Wooden</option>
-                            <option value="Remote Controlled">Remote Controlled</option>
-                        </select>
+                            <FormControl variant="outlined">
+                                <InputLabel htmlFor="type-select" >Rating</InputLabel>
+                                <Select
+                                native
+                                value={this.state.type}
+                                onChange={this.handleChange('type')}
+                                inputProps={{
+                                    name: 'type',
+                                    id: 'type-select',
+                                }}
+                                >
+                                    <option value="" />
+                                    <option value="Electric">Electric</option>
+                                    <option value="Plastic">Plastic</option>
+                                    <option value="Wooden">Wooden</option>
+                                    <option value="Remote Controlled">Remote Controlled</option>
+                                </Select>
+                            </FormControl>
                         
                         </Grid>
                         <Grid item 
@@ -181,6 +199,7 @@ export default class Edit extends Component {
                                         onClick={this.handleRemoveImageURL(id)}>
                                         <ClearIcon />
                                     </Fab>
+                                    <br /><br />
                             </Grid>
                             ))}
                             <Button 
@@ -197,25 +216,38 @@ export default class Edit extends Component {
                                 />
                         </Grid>
                         <Grid item xs={12}>
-                            <label>Rating: </label>
-                            <select 
-                                value={this.state.rating} 
-                                onChange={this.onChangeRating}>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                            <FormControl variant="outlined">
+                                <InputLabel htmlFor="rating-select" >Rating</InputLabel>
+                                <Select
+                                native
+                                value={this.state.rating}
+                                onChange={this.handleChange('rating')}
+                                inputProps={{
+                                    name: 'rating',
+                                    id: 'rating-select',
+                                }}
+                                >
+                                    <option value="" />
+                                    <option value={1}>1</option>
+                                    <option value={2}>2</option>
+                                    <option value={3}>3</option>
+                                    <option value={4}>4</option>
+                                    <option value={5}>5</option>
+                                </Select>
+                            </FormControl>
                         </Grid>
-                        <Grid item xs={12}>
+                    </Grid>
+                    <Grid container spacing={1} className="action-buttons">
+                        <Grid item xs={6}>
                             <Link to={`/item/${this.props.match.params.id}`}>
                                 <Button variant="contained">
                                     <ArrowBackIosIcon /> Back
                                 </Button>
                             </Link>
-                            <Button variant="contained"  type="submit">Update</Button>
                         </Grid>
+                        <Grid item xs={6}>
+                            <Button variant="contained"  type="submit">Update</Button>
+                        </Grid>                        
                     </Grid>
                 </form>
             </div>

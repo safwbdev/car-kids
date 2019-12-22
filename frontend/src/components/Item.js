@@ -6,7 +6,6 @@ import Slider from "react-slick";
 import Button from '@material-ui/core/Button';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import EditIcon from '@material-ui/icons/Edit';
-import StarsIcon from '@material-ui/icons/Stars';
 import StarIcon from '@material-ui/icons/Star';
 
 export default class Item extends Component {
@@ -19,7 +18,6 @@ export default class Item extends Component {
             type: '',
             images: []
         };
-
     }
 
     componentDidMount() {
@@ -62,7 +60,6 @@ export default class Item extends Component {
         for (let i=0;i<this.state.rating ;i++){
             stars.push(<StarIcon />)
         }
-        const getRating = this.state.rating; 
 
 
         return (
