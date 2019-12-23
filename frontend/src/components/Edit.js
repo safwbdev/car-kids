@@ -171,23 +171,16 @@ export default class Edit extends Component {
                             </FormControl>
                         </Grid>
                         
-                        <Grid item lg={6} 
+                        <Grid item className="datepicker"
+                            lg={6} 
                             md={6} 
                             sm={12} 
                             xs={12}>
-                            {/* <label>Available Date: </label>
+                            <label>Available Date: </label>
                                 <DatePicker
                                     selected={this.state.startDate}
                                     onChange={this.onChangeDate}
-                                /> */}
-                            <TextField
-                                id="date"
-                                label="Birthday"
-                                type="date"
-                                defaultValue="2017-05-24"
-                                InputLabelProps={{
-                                    shrink: true,
-                                    }}
+                                    
                                 />
                         </Grid>
                         <Grid item lg={6} 

@@ -85,17 +85,15 @@ export default class Home extends Component {
             <Grid container>
                 <Grid item xs={12}>
                     <h1>Home Page</h1>
-                    <ul>
-                        <li>Update Datepickers</li>
-                        <li>Update layout of edit form</li>
-                    </ul>
                 </Grid>
                 <Grid container spacing={2}>
                     {itemList}
                 </Grid>
-                <Grid container spacing={2}>
+                <Grid container spacing={8}>
                 <Grid item xs={12}>
+                    <ul className="page-numbers">
                     {renderPageNumbers}
+                    </ul>
                 </Grid>
                 </Grid>
             </Grid>
