@@ -10,7 +10,7 @@ export default class Home extends Component {
         this.state = {
             items: [],
             currentPage: 1,
-            itemsPerPage: 2
+            itemsPerPage: 5
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -23,6 +23,16 @@ export default class Home extends Component {
             .catch(function (error) {
                 console.log(error);
             })
+    }
+    componentDidUpdate(){
+        axios.get('http://localhost:4000/items/')
+            .then(response => {
+                this.setState({items: response.data});
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+
     }
 
     handleClick(event) {
